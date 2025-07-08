@@ -1,357 +1,1308 @@
-<!-- index.html for My Digital Traveler | Bilingual ES/EN landing page | v2.4 - Content & Visual Refresh -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Digital Traveler – Viaja el mundo. Trabaja digital. Vive libre.</title>
-
-    <!-- SEO & Social -->
-    <meta name="description" content="Viaja el mundo, trabaja digital y vive libre con guías, mentorías y herramientas de IA." />
-    <meta property="og:title" content="My Digital Traveler" />
-    <meta property="og:description" content="Viaja el mundo, trabaja digital y vive libre" />
-    <meta property="og:image" content="IMG/24.jpg" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mydigitaltraveler.com" />
-
-    <!-- Favicon -->
-    <link href="logo.jpg" rel="icon">
-
-    <!-- TailwindCSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>My Digital Traveling – Crea tu Negocio. Vive Libre.</title>
     
-    <!-- Animate On Scroll Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- Configuración de Tailwind y Paleta de Colores -->
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#008879", // VERDE MARINO
-              secondary: "#008879", 
-              sand: "#F6E2B3",
-              coral: "#f9cb60", // Coral/Dorado
-              light: "#f8f9fa",
-              'dark-text': '#343a40',
-              white: "#FFFFFF",
-            },
-            fontFamily: {
-              sans: ["Lato", "ui-sans-serif", "system-ui"],
-              heading: ["Montserrat", "ui-sans-serif", "system-ui"],
-            },
-          },
-        },
-      };
-    </script>
-
-    <!-- Google Fonts -->
+    <!-- Frameworks & Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Estilos -->
+    <!-- Integrated CSS -->
     <style>
-      body.lang-es [data-en] { display: none; }
-      body.lang-en [data-es] { display: none; }
-      
-      .hero-bg {
-        background-image: url('IMG/13.png');
-        background-size: cover;
-        background-position: center;
-      }
-      .hero-overlay {
-        background: rgba(0, 0, 0, 0.50);
-      }
-      
-      .card-hover-effect {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-      .card-hover-effect:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 10px 20px -5px rgb(0 0 0 / 0.1);
-      }
-
-      .cta-primary { @apply px-8 py-4 rounded-lg text-lg font-medium bg-coral text-secondary hover:bg-opacity-90 transition; }
-      .cta-secondary { @apply px-8 py-4 rounded-lg text-lg font-medium border border-white/70 text-white hover:bg-white/10 transition; }
-
-      .horizontal-scroll {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      .horizontal-scroll::-webkit-scrollbar {
-        display: none;
-      }
+        body {
+          font-family: 'Lexend', sans-serif;
+          background-color: #f8f9fa;
+          padding-top: 72px; /* Added padding to prevent content from hiding behind fixed nav */
+        }
+        .section-title {
+          font-size: clamp(2.5rem, 7vw, 4.5rem);
+          font-weight: 700;
+          line-height: 1.2;
+        }
+        .step-title {
+            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+        .btn {
+          padding: 1rem 2.5rem;
+          border-radius: 9999px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          transition: all 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          cursor: pointer;
+          border: none;
+        }
+        .btn:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .btn:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .btn-primary {
+          background: linear-gradient(45deg, #D4AF37, #F7DC6F);
+          color: #333;
+        }
+        .btn-primary:hover:not(:disabled) {
+          background: linear-gradient(45deg, #C8A430, #E6C75E);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        #startup-quest-section {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFF3E0 100%);
+            padding: 2rem 0;
+        }
+        .step-card {
+          position: relative;
+          background-color: #ffffff;
+          border-radius: 1rem;
+          padding: 2rem;
+          margin-bottom: 8rem;
+          overflow: hidden;
+          box-shadow: 0 20px 40px -15px rgba(0,0,0,0.08);
+        }
+        .step-card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .step-card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .step-card:nth-child(even) .step-image {
+                order: 2;
+            }
+        }
+        .step-image img {
+            border-radius: 0.75rem;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .step-image:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+        .step-number-bg {
+            position: absolute;
+            font-size: 15rem;
+            font-weight: 800;
+            color: rgba(212, 175, 55, 0.08);
+            z-index: 0;
+            line-height: 1;
+            user-select: none;
+            transition: transform 0.4s ease, color 0.4s ease;
+        }
+        .step-card:nth-child(odd) .step-number-bg { top: -2rem; left: -3rem; }
+        .step-card:nth-child(even) .step-number-bg { bottom: -2rem; right: -3rem; }
+        .step-card:hover .step-number-bg {
+            transform: scale(1.1);
+            color: rgba(212, 175, 55, 0.12);
+        }
+        .step-content { position: relative; z-index: 1; }
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px -5px rgb(0 0 0 / 0.1);
+        }
+        .kpi-card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .kpi-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ca8a04; /* text-yellow-600 */
+        }
+        .kpi-label {
+            font-size: 1rem;
+            color: #4b5563; /* text-gray-600 */
+            margin-top: 0.5rem;
+        }
+        .chart-container {
+          position: relative;
+          width: 100%;
+          height: 300px;
+          max-height: 400px;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #ca8a04; /* text-yellow-600 */
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
   </head>
-  <body class="font-sans text-dark-text antialiased bg-white">
-    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 bg-primary text-white px-4 py-2 rounded">Saltar al contenido</a>
+  <body class="text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-18">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-xl font-bold text-gray-800" data-key="nav_logo"></a>
+                </div>
 
-    <!-- BARRA DE NAVEGACIÓN -->
-    <header class="sticky top-0 z-50 backdrop-blur-lg bg-white/90 border-b border-gray-200">
-      <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-        <a href="index.html" class="flex items-center gap-2 text-primary font-heading text-2xl font-extrabold transition hover:opacity-80">
-          <span class="sr-only">My Digital Traveler</span>
-          <img src="IMG/logo.png" alt="Logo de My Digital Traveler" class="h-14 w-auto">
-        </a>
-        <nav class="hidden md:flex gap-x-8 text-sm font-medium text-gray-700">
-          <a href="#about" class="hover:text-primary transition" data-en>About</a>
-          <a href="#about" class="hover:text-primary transition" data-es>Quién Soy</a>
-          <a href="#services" class="hover:text-primary transition" data-en>Services</a>
-          <a href="#services" class="hover:text-primary transition" data-es>Servicios</a>
-          <a href="#incruises" class="hover:text-primary transition" data-en>Travel Club</a>
-          <a href="#incruises" class="hover:text-primary transition" data-es>Club de Viajes</a>
-          <a href="blog.html" class="hover:text-primary transition" data-en>Blog</a>
-          <a href="blog.html" class="hover:text-primary transition" data-es>Blog</a>
-        </nav>
-        <div class="flex items-center gap-4">
-            <a href="#contact" class="hidden sm:block px-5 py-2 rounded-md text-sm bg-primary text-white hover:bg-opacity-90 transition-colors duration-300"><span data-en>Contact</span><span data-es>Contacto</span></a>
-             <button id="nav-toggle" aria-label="Menu" class="md:hidden text-primary">
-                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-            </button>
-            <div class="hidden md:flex items-center gap-2">
-                <button data-lang="en" class="lang-btn px-2 py-1 rounded-md text-sm border border-gray-300 text-gray-500 hover:bg-gray-100 transition-colors">EN</button>
-                <button data-lang="es" class="lang-btn px-2 py-1 rounded-md text-sm border border-gray-300 text-gray-500 hover:bg-gray-100 transition-colors">ES</button>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="font-semibold text-gray-600 hover:text-yellow-600 transition-colors" data-key="nav_about"></a>
+                    <a href="#journey" class="font-semibold text-gray-600 hover:text-yellow-600 transition-colors" data-key="nav_journey"></a>
+                    <a href="#startup-quest-section" class="font-semibold text-gray-600 hover:text-yellow-600 transition-colors" data-key="nav_quest"></a>
+                    <a href="#services" class="font-semibold text-gray-600 hover:text-yellow-600 transition-colors" data-key="nav_services"></a>
+                    <a href="#blog" class="font-semibold text-gray-600 hover:text-yellow-600 transition-colors" data-key="nav_blog"></a>
+                    <a href="#toolkit" class="font-semibold text-gray-600 hover:text-yellow-600 transition-colors" data-key="nav_toolkit"></a>
+                    <a href="#infographic" class="font-semibold text-gray-600 hover:text-yellow-600 transition-colors" data-key="nav_infographic"></a>
+                    <button id="lang-toggle-desktop" class="font-bold text-gray-600 hover:text-yellow-600 transition-colors px-3 py-1 border-2 border-gray-400 rounded-md">ES</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="lang-toggle-mobile" class="font-bold text-gray-600 hover:text-yellow-600 transition-colors px-3 py-1 border-2 border-gray-400 rounded-md mr-4">ES</button>
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
+                        <span class="sr-only">Open main menu</span>
+                        <svg id="hamburger-icon" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                        <svg id="close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
             </div>
+        </div>
+
+        <!-- Mobile Menu, show/hide based on menu state. -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" data-key="nav_about"></a>
+                <a href="#journey" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" data-key="nav_journey"></a>
+                <a href="#startup-quest-section" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" data-key="nav_quest"></a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" data-key="nav_services"></a>
+                <a href="#blog" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" data-key="nav_blog"></a>
+                <a href="#toolkit" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" data-key="nav_toolkit"></a>
+                <a href="#infographic" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" data-key="nav_infographic"></a>
+            </div>
+        </div>
+    </nav>
+  
+    <!-- Header -->
+    <header class="relative h-screen flex items-center justify-center text-white text-center">
+      <div class="absolute inset-0 bg-black/60 z-10"></div>
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" alt="Equipo de personas colaborando en un proyecto" class="absolute inset-0 w-full h-full object-cover" />
+      <div class="relative z-20 px-4" data-aos="fade-up" data-aos-duration="1000">
+        <h1 class="text-5xl md:text-7xl font-extrabold drop-shadow-2xl" data-key="hero_main_title"></h1>
+        <h2 class="text-3xl md:text-5xl font-bold mt-4 drop-shadow-xl" data-key="hero_subtitle_1"></h2>
+        <p class="mt-6 text-lg md:text-xl max-w-3xl mx-auto text-gray-200" data-key="hero_subtitle_2"></p>
+        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#startup-quest-section" class="btn btn-primary" data-key="hero_button_text"></a>
+            <a href="#services" class="btn btn-secondary" data-key="hero_button_secondary_text"></a>
         </div>
       </div>
-       <!-- Menú móvil -->
-      <nav id="nav-menu" class="hidden md:hidden flex-col gap-4 p-6 bg-white border-t border-gray-200">
-          <a href="#about" class="hover:text-primary block py-2" data-en>About</a><a href="#about" class="hover:text-primary block py-2" data-es>Quién soy</a>
-          <a href="#services" class="hover:text-primary block py-2" data-en>Services</a><a href="#services" class="hover:text-primary block py-2" data-es>Servicios</a>
-           <a href="#incruises" class="hover:text-primary block py-2" data-en>Travel Club</a><a href="#incruises" class="hover:text-primary block py-2" data-es>Club de Viajes</a>
-          <a href="blog.html" class="hover:text-primary block py-2" data-en>Blog</a><a href="blog.html" class="hover:text-primary block py-2" data-es>Blog</a>
-          <a href="#contact" class="hover:text-primary block py-2" data-en>Contact</a><a href="#contact" class="hover:text-primary block py-2" data-es>Contacto</a>
-           <div class="flex gap-2 mt-4">
-               <button data-lang="en" class="lang-btn px-3 py-1 border border-primary rounded text-primary hover:bg-primary hover:text-white">EN</button>
-               <button data-lang="es" class="lang-btn px-3 py-1 border border-primary rounded text-primary hover:bg-primary hover:text-white">ES</button>
-           </div>
-      </nav>
     </header>
 
-    <main id="main">
-      <!-- SECCIÓN HERO -->
-      <section id="home" class="relative hero-bg text-white h-[90vh] md:h-screen flex items-center justify-center overflow-hidden">
-        <div class="hero-overlay absolute inset-0"></div>
-        <div class="relative z-10 p-6 text-center" data-aos="fade-up">
-          <img src="IMG/logo.png" alt="Logo My Digital Traveler" class="mx-auto mb-8" style="width: 350px;">
-          <h1 class="text-4xl md:text-6xl font-heading font-extrabold drop-shadow-2xl">
-            <span data-en>Travel the world. Work digital. Live free.</span>
-            <span data-es>Viaja el mundo. Trabaja digital. Vive libre.</span>
-          </h1>
-          <p class="mt-6 text-lg md:text-2xl max-w-3xl mx-auto drop-shadow-xl">
-            <span data-en>Your guide to building a life of freedom and purpose, powered by AI and digital skills.</span>
-            <span data-es>Tu guía para construir una vida de libertad y propósito, impulsada por IA y habilidades digitales.</span>
-          </p>
-          <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#contact" class="cta-primary" data-en>Start your transformation</a>
-            <a href="#contact" class="cta-primary" data-es>Inicia tu transformación</a>
-            <a href="#services" class="cta-secondary" data-en>Explore Services</a>
-            <a href="#services" class="cta-secondary" data-es>Ver Servicios</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECCIÓN SOBRE MÍ (QUIÉN SOY) -->
-      <section id="about" class="py-24 px-6 bg-white">
+    <!-- About Me Section -->
+    <section id="about" class="py-24 px-6 bg-white">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div data-aos="fade-right">
-            <img src="IMG/ChatGPT%20Image%2022%20jun%202025,%2002_58_17%20a.m..png" alt="Retrato de Milena Méndez en la playa" class="rounded-2xl shadow-xl object-cover w-full h-full card-hover-effect" />
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400&q=80" alt="Retrato de la mentora Milena" class="rounded-2xl shadow-xl object-cover w-full h-full card-hover-effect" />
           </div>
           <div data-aos="fade-left">
-            <h2 class="text-4xl md:text-5xl font-heading font-bold mb-6"><span data-en>Hi, I’m Milena</span><span data-es>Hola, soy Milena</span> 👋</h2>
-            <p class="text-gray-700 text-lg leading-relaxed">
-              <span data-en>I’m a former NYC ad‑exec who traded skyscrapers for sunsets. With nothing but a laptop and a vision, I’ve built a profitable brand while exploring 30+ countries. Now I teach aspiring nomads how to leverage AI, branding and smart funnels to design a life without borders.</span>
-              <span data-es>Soy una ex-publicista de Nueva York que cambió los rascacielos por atardeceres. Con solo una laptop y una visión, he construido una marca rentable mientras exploro más de 30 países. Ahora enseño a futuros nómadas a usar IA, branding y embudos inteligentes para diseñar una vida sin fronteras. Mi misión es ayudarte a construir la tuya.</span>
-            </p>
+            <h2 class="section-title text-gray-900 mb-6"><span data-key="about_title"></span> 👋</h2>
+            <p class="text-gray-600 text-lg leading-relaxed" data-key="about_text"></p>
+          </div>
+        </div>
+    </section>
+
+    <!-- Pillars Section -->
+    <section id="pillars" class="py-24 px-6 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16" data-aos="fade-up">
+             <h2 class="section-title text-gray-900" data-key="pillars_title"></h2>
+            <p class="text-gray-700 text-lg max-w-3xl mx-auto mt-4" data-key="pillars_subtitle"></p>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8 text-center">
+            <div class="p-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-white text-yellow-600 shadow-md mx-auto mb-6 card-hover-effect"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
+                <h3 class="text-2xl font-bold mb-2" data-key="pillar1_title"></h3>
+                <p class="text-gray-600" data-key="pillar1_text"></p>
+            </div>
+            <div class="p-8" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-white text-yellow-600 shadow-md mx-auto mb-6 card-hover-effect"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9M3 12a9 9 0 019-9m-9 9a9 9 0 009 9" /></svg></div>
+                <h3 class="text-2xl font-bold mb-2" data-key="pillar2_title"></h3>
+                <p class="text-gray-600" data-key="pillar2_text"></p>
+            </div>
+            <div class="p-8" data-aos="fade-up" data-aos-delay="300">
+                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-white text-yellow-600 shadow-md mx-auto mb-6 card-hover-effect"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg></div>
+                <h3 class="text-2xl font-bold mb-2" data-key="pillar3_title"></h3>
+                <p class="text-gray-600" data-key="pillar3_text"></p>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- SECCIÓN PILARES DEL PROYECTO -->
-      <section id="mdt" class="py-24 px-6 bg-light">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center mb-16" data-aos="fade-up">
-             <h2 class="text-4xl md:text-5xl font-heading font-bold mb-4">
-                <span data-en>This is not just a brand. It's a movement.</span>
-                <span data-es>No es solo una marca. Es un movimiento.</span>
-            </h2>
-            <p class="text-gray-700 text-lg max-w-3xl mx-auto">
-                <span data-en>We integrate three key pillars to help you design a life aligned with your purpose.</span>
-                <span data-es>Integramos tres pilares clave para ayudarte a diseñar una vida alineada con tu propósito.</span>
-            </p>
-          </div>
-          <div class="md:grid md:grid-cols-3 gap-8 text-center flex overflow-x-auto horizontal-scroll pb-4">
-            <div class="p-8 flex-shrink-0 w-4/5 md:w-auto" data-aos="fade-up" data-aos-delay="100">
-                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-white text-primary shadow-md mx-auto mb-6 card-hover-effect"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg></div>
-                <h3 class="text-xl font-bold font-heading mb-2"><span data-en>Digital Freedom</span><span data-es>Libertad Digital</span></h3>
-                <p class="text-gray-700"><span data-en>Education in branding, automation, and marketing with AI to monetize your skills.</span><span data-es>Educación en branding, automatización y marketing con IA para que monetices tus habilidades.</span></p>
+    <!-- Infographic Section -->
+    <section id="infographic" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title text-gray-900" data-key="infographic_title"></h2>
+                <p class="max-w-3xl mx-auto mt-6 text-lg md:text-xl text-gray-600" data-key="infographic_subtitle"></p>
             </div>
-            <div class="p-8 flex-shrink-0 w-4/5 md:w-auto" data-aos="fade-up" data-aos-delay="200">
-                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-white text-primary shadow-md mx-auto mb-6 card-hover-effect"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9M3 12a9 9 0 019-9m-9 9a9 9 0 009 9" /></svg></div>
-                <h3 class="text-xl font-bold font-heading mb-2"><span data-en>Nomad Lifestyle</span><span data-es>Estilo de Vida Nómada</span></h3>
-                <p class="text-gray-700"><span data-en>Guides, resources, and partnerships to travel the world smarter and connect with a global community.</span><span data-es>Guías, recursos y alianzas para viajar por el mundo de forma inteligente y conectar con una comunidad global.</span></p>
-            </div>
-            <div class="p-8 flex-shrink-0 w-4/5 md:w-auto" data-aos="fade-up" data-aos-delay="300">
-                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-white text-primary shadow-md mx-auto mb-6 card-hover-effect"><svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg></div>
-                <h3 class="text-xl font-bold font-heading mb-2"><span data-en>Personal Empowerment</span><span data-es>Empoderamiento Personal</span></h3>
-                <p class="text-gray-700"><span data-en>Mentorship and inspiring content to help you rewrite your story and live with purpose.</span><span data-es>Mentoría y contenido inspirador para ayudarte a reescribir tu historia y vivir con propósito.</span></p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- SECCIÓN SERVICIOS -->
-      <section id="services" class="py-24 px-6 bg-white">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="text-4xl md:text-5xl font-heading font-bold mb-4"><span data-en>Mentorships to Boost Your Brand</span><span data-es>Mentorías para Impulsar tu Marca</span></h2>
-            <p class="text-gray-700 text-lg"><span data-en>From idea to income, together. Choose the path that best suits your moment.</span><span data-es>De la idea a los ingresos, juntas. Elige el plan que mejor se adapte a tu momento.</span></p>
-          </div>
-          <div class="grid md:grid-cols-3 gap-8 items-stretch">
-            <div class="rounded-2xl bg-light flex flex-col text-center card-hover-effect overflow-hidden" data-aos="fade-up" data-aos-delay="100">
-              <img src="IMG/23.jpg" class="h-48 w-full object-cover" alt="Mujer sonriendo mientras trabaja en su laptop al aire libre">
-              <div class="p-8 flex flex-col flex-grow">
-                <h3 class="text-2xl font-bold font-heading">🌍 Kit Nómada Digital</h3>
-                <p class="text-gray-500 my-4 flex-grow"><span data-en>The essentials to launch your digital presence: mini-brand, a sales funnel, and a 30-min strategy session.</span><span data-es>Lo esencial para lanzar tu presencia digital: mini-branding, un embudo de ventas y 30 min de mentoría estratégica.</span></p>
-                <div class="text-5xl font-extrabold text-secondary my-4">$197</div>
-                <a href="#contact" class="mt-auto block w-full px-6 py-3 bg-primary/10 text-primary rounded-lg font-medium transition hover:bg-primary hover:text-white"> <span data-en>Start Now</span><span data-es>Empezar Ahora</span> </a>
-              </div>
-            </div>
-            <div class="rounded-2xl bg-secondary text-white flex flex-col text-center shadow-2xl transform md:scale-105 overflow-hidden" data-aos="fade-up">
-              <img src="IMG/22.png" class="h-48 w-full object-cover" alt="Mujer usando laptop con gráficos de IA">
-              <div class="p-8 flex flex-col flex-grow">
-                <h3 class="text-2xl font-bold font-heading">🚀 Impulsa tu Marca</h3>
-                <p class="text-gray-300 my-4 flex-grow"><span data-en>Pro branding, 3 sales funnels with email sequences, and 3 hours of personalized mentorship to accelerate your growth.</span><span data-es>Branding pro, 3 embudos de venta con secuencias de email y 3 horas de mentoría personalizada para acelerar tu crecimiento.</span></p>
-                <div class="text-5xl font-extrabold text-white my-4">$997</div>
-                <a href="#contact" class="mt-auto block w-full px-6 py-3 bg-coral text-secondary rounded-lg font-medium transition hover:bg-opacity-90 shadow-lg"> <span data-en>Boost Me</span><span data-es>Impulsar</span> </a>
-              </div>
-            </div>
-            <div class="rounded-2xl bg-light flex flex-col text-center card-hover-effect overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-              <img src="IMG/13.png" class="h-48 w-full object-cover" alt="Collage de personas trabajando remotamente en varios lugares">
-              <div class="p-8 flex flex-col flex-grow">
-                <h3 class="text-2xl font-bold font-heading">💼 Crea tu Imperio</h3>
-                <p class="text-gray-500 my-4 flex-grow"><span data-en>The complete suite to build your remote empire: full brand identity, website, 5 funnels, and 6 hours of mentorship & automations.</span><span data-es>La suite completa para tu imperio remoto: identidad de marca premium, sitio web, 5 embudos, 6 horas de mentoría y automatizaciones.</span></p>
-                <div class="text-5xl font-extrabold text-secondary my-4">$1,997</div>
-                <a href="#contact" class="mt-auto block w-full px-6 py-3 bg-primary/10 text-primary rounded-lg font-medium transition hover:bg-primary hover:text-white"> <span data-en>Let’s Build</span><span data-es>Construir</span> </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <!-- SECCIÓN INCRUISES -->
-      <section id="incruises" class="py-24 px-6 bg-light">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div data-aos="fade-left">
-                <h2 class="text-4xl md:text-5xl font-heading font-bold mb-6"><span data-en>Travel More, For Less</span><span data-es>Viaja Más, Por Menos</span></h2>
-                <p class="text-gray-700 text-lg leading-relaxed mb-6">
-                    <span data-en>As a partner of Incruises, the world's first cruise membership club, I offer you exclusive access to thousands of cruises at unbeatable prices.</span>
-                    <span data-es>Como socia de inCruises, el primer club de membresías de cruceros del mundo, te ofrezco acceso exclusivo a miles de cruceros a precios inigualables.</span>
-                </p>
-                <ul class="space-y-4 text-gray-700">
-                    <li class="flex gap-3 items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span><strong data-en>Save up to 70%</strong><strong data-es>Ahorra hasta un 70%</strong><span data-en> on your bookings.</span><span data-es> en tus reservaciones.</span></span></li>
-                    <li class="flex gap-3 items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span><strong data-en>Flexible Points:</strong><strong data-es>Puntos Flexibles:</strong><span data-en> Your points never expire.</span><span data-es> Tus puntos nunca vencen.</span></span></li>
-                    <li class="flex gap-3 items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span><strong data-en>Cruise for free</strong><strong data-es>Viaja gratis</strong><span data-en> by inviting friends.</span><span data-es> invitando a tus amigos.</span></span></li>
-                </ul>
-                <a href="#contact" class="inline-block mt-8 cta-primary" data-en>Join the Club</a>
-                <a href="#contact" class="inline-block mt-8 cta-primary" data-es>Únete al Club</a>
-            </div>
-            <div data-aos="fade-right">
-                <img src="IMG/01.png" alt="Laptop en un balcón con vista a un crucero en el mar" class="rounded-2xl shadow-xl object-cover w-full h-full card-hover-effect" />
-            </div>
-        </div>
-      </section>
-
-      <!-- SECCIÓN TESTIMONIOS -->
-      <section id="testimonials" class="py-24 px-6 bg-white">
-        <div class="max-w-4xl mx-auto text-center">
-            <div data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-heading font-bold mb-4"><span data-en>Real Stories, Real Transformations</span><span data-es>Historias Reales, Transformaciones Reales</span></h2>
-                <p class="text-gray-700 text-lg mb-20"><span data-en>Hear from women who have changed their lives with My Digital Traveler.</span><span data-es>Escucha a mujeres que han cambiado su vida con My Digital Traveler.</span></p>
-            </div>
-            <div class="grid md:grid-cols-2 gap-x-8 gap-y-16">
-                <div class="bg-light p-8 rounded-2xl" data-aos="fade-up">
-                    <img src="IMG/23.jpg" alt="Foto de cliente Sara" class="w-24 h-24 rounded-full mx-auto -mt-20 border-4 border-white shadow-lg object-cover" />
-                    <p class="mt-6 text-gray-700 italic">“<span data-en>The funnels Milena built doubled my course sales while I was hiking in Patagonia.</span><span data-es>Los embudos que Milena creó duplicaron las ventas de mi curso mientras yo estaba de viaje en la Patagonia.</span>”</p>
-                    <h4 class="mt-4 font-semibold text-coral">Sara – 🇦🇷</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12" data-aos="fade-up">
+                <div class="kpi-card">
+                    <div class="kpi-value">80M</div>
+                    <div class="kpi-label" data-key="kpi1_label"></div>
                 </div>
-                <div class="bg-light p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
-                    <img src="IMG/13.png" alt="Foto de cliente Alex" class="w-24 h-24 rounded-full mx-auto -mt-20 border-4 border-white shadow-lg object-cover" />
-                    <p class="mt-6 text-gray-700 italic">“<span data-en>Milena’s mentorship helped me quit my 9-5 and land my first remote client in just 6 weeks.</span><span data-es>La mentoría de Milena me ayudó a dejar mi trabajo y conseguir mi primer cliente remoto en solo 6 semanas.</span>”</p>
-                    <h4 class="mt-4 font-semibold text-coral">Alex – 🇨🇦</h4>
+                <div class="kpi-card">
+                    <div class="kpi-value">147%</div>
+                    <div class="kpi-label" data-key="kpi2_label"></div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">$124k</div>
+                    <div class="kpi-label" data-key="kpi3_label"></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="bg-gray-50 rounded-lg shadow-md p-6" data-aos="fade-right">
+                    <h3 class="text-xl font-bold text-center mb-4" data-key="chart1_title"></h3>
+                    <div class="chart-container mx-auto max-w-sm">
+                        <canvas id="demographicsChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg shadow-md p-6" data-aos="fade-left">
+                    <h3 class="text-xl font-bold text-center mb-4" data-key="chart2_title"></h3>
+                    <div class="chart-container mx-auto max-w-xl">
+                        <canvas id="costComparisonChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
-      </section>
+    </section>
 
-      <!-- LLAMADA A LA ACCIÓN FINAL -->
-      <section id="contact" class="py-24 px-6 bg-secondary text-white text-center">
-        <div class="max-w-2xl mx-auto" data-aos="fade-up">
-          <h2 class="text-4xl md:text-5xl font-heading font-bold mb-4"><span data-en>Ready to Transform Your Life?</span><span data-es>¿Lista para Transformar tu Vida?</span></h2>
-          <p class="mb-8 text-lg text-gray-300"><span data-en>Schedule a free discovery call or drop me a message. Let's build your dream life, together.</span><span data-es>Agenda una llamada de descubrimiento gratis o envíame un mensaje. Construyamos la vida de tus sueños, juntas.</span></p>
-          <a href="#" class="cta-primary">
-            <span data-en>Let's Talk</span><span data-es>Hablemos</span>
-          </a>
+    <!-- Step-by-Step Guide -->
+    <section id="journey" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="section-title text-gray-900" data-key="intro_title"></h2>
+                <p class="max-w-3xl mx-auto mt-6 text-lg md:text-xl text-gray-600" data-key="intro_subtitle"></p>
+            </div>
+            <!-- Steps will be rendered here -->
+            <article class="step-card" data-aos="fade-up">
+                <div class="step-number-bg">1</div>
+                <div class="step-card-grid">
+                    <div class="step-content" data-aos="fade-right" data-aos-delay="200">
+                        <h3 class="step-title" data-key="step1_title"></h3>
+                        <p class="text-gray-600 mb-6" data-key="step1_text"></p>
+                        <a href="#startup-quest-section" class="btn btn-primary" data-key="step_button"></a>
+                    </div>
+                    <div class="step-image" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1583383824067-3e19b56114a5?q=80&w=1974&auto=format&fit=crop" alt="Una bombilla brillante representando una nueva idea"/>
+                    </div>
+                </div>
+            </article>
+            <article class="step-card" data-aos="fade-up">
+                <div class="step-number-bg">2</div>
+                <div class="step-card-grid">
+                    <div class="step-content" data-aos="fade-left" data-aos-delay="200">
+                        <h3 class="step-title" data-key="step2_title"></h3>
+                        <p class="text-gray-600 mb-6" data-key="step2_text"></p>
+                        <a href="#startup-quest-section" class="btn btn-primary" data-key="step_button"></a>
+                    </div>
+                    <div class="step-image" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Gráficos y una lupa simbolizando investigación"/>
+                    </div>
+                </div>
+            </article>
+            <article class="step-card" data-aos="fade-up">
+                <div class="step-number-bg">3</div>
+                <div class="step-card-grid">
+                    <div class="step-content" data-aos="fade-right" data-aos-delay="200">
+                        <h3 class="step-title" data-key="step3_title"></h3>
+                        <p class="text-gray-600 mb-6" data-key="step3_text"></p>
+                        <a href="#startup-quest-section" class="btn btn-primary" data-key="step_button"></a>
+                    </div>
+                    <div class="step-image" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2072&auto=format&fit=crop" alt="Persona escribiendo un plan en un portátil"/>
+                    </div>
+                </div>
+            </article>
+            <article class="step-card" data-aos="fade-up">
+                <div class="step-number-bg">4</div>
+                <div class="step-card-grid">
+                    <div class="step-content" data-aos="fade-left" data-aos-delay="200">
+                        <h3 class="step-title" data-key="step4_title"></h3>
+                        <p class="text-gray-600 mb-6" data-key="step4_text"></p>
+                        <a href="#startup-quest-section" class="btn btn-primary" data-key="step_button"></a>
+                    </div>
+                    <div class="step-image" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?q=80&w=2070&auto=format&fit=crop" alt="Equipo colaborando en branding con paletas de colores"/>
+                    </div>
+                </div>
+            </article>
+             <article class="step-card" data-aos="fade-up">
+                <div class="step-number-bg">5</div>
+                <div class="step-card-grid">
+                    <div class="step-content" data-aos="fade-right" data-aos-delay="200">
+                        <h3 class="step-title" data-key="step5_title"></h3>
+                        <p class="text-gray-600 mb-6" data-key="step5_text"></p>
+                        <a href="#startup-quest-section" class="btn btn-primary" data-key="step_button"></a>
+                    </div>
+                    <div class="step-image" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1548345680-f5475ea5df84?q=80&w=2070&auto=format&fit=crop" alt="Cohete despegando hacia el cielo, simbolizando un lanzamiento de producto"/>
+                    </div>
+                </div>
+            </article>
         </div>
-      </section>
+    </section>
+
+    <!-- Game App Container -->
+    <main id="startup-quest-section" class="py-24 md:py-32">
+        <!-- The Startup Quest game will be rendered here by JavaScript -->
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-white text-gray-500 py-10 px-6 text-center border-t">
-        <p class="mb-4">
-             <a href="index.html" class="font-heading text-lg font-bold text-dark-text hover:text-primary transition">My Digital Traveler</a>
-        </p>
-        <div class="flex justify-center gap-6 mb-4">
-            <a href="#" class="hover:text-primary">Instagram</a>
-            <a href="#" class="hover:text-primary">YouTube</a>
-            <a href="#" class="hover:text-primary">LinkedIn</a>
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="section-title text-gray-900" data-key="services_title"></h2>
+            <p class="text-gray-600 text-lg mt-4" data-key="services_subtitle"></p>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8 items-stretch">
+            <div class="rounded-2xl bg-gray-50 flex flex-col text-center card-hover-effect overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf96132e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300&q=80" class="h-48 w-full object-cover" alt="Mujer sonriendo mientras trabaja en su laptop al aire libre">
+              <div class="p-8 flex flex-col flex-grow">
+                <h3 class="text-2xl font-bold" data-key="service1_title"></h3>
+                <p class="text-gray-600 my-4 flex-grow" data-key="service1_desc"></p>
+                <div class="text-5xl font-extrabold text-yellow-700 my-4" data-key="service1_price"></div>
+                <a href="#contact" class="mt-auto block w-full px-6 py-3 bg-yellow-500/20 text-yellow-800 rounded-lg font-medium transition hover:bg-yellow-500 hover:text-white" data-key="service_button"></a>
+              </div>
+            </div>
+            <div class="rounded-2xl bg-slate-800 text-white flex flex-col text-center shadow-2xl transform md:scale-105 overflow-hidden" data-aos="fade-up">
+              <img src="https://images.unsplash.com/photo-1610484826967-09c571775d2e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300&q=80" class="h-48 w-full object-cover" alt="Mujer usando laptop con gráficos de IA">
+              <div class="p-8 flex flex-col flex-grow">
+                <h3 class="text-2xl font-bold" data-key="service2_title"></h3>
+                <p class="text-gray-300 my-4 flex-grow" data-key="service2_desc"></p>
+                <div class="text-5xl font-extrabold text-white my-4" data-key="service2_price"></div>
+                <a href="#contact" class="mt-auto block w-full px-6 py-3 bg-yellow-400 text-slate-900 rounded-lg font-medium transition hover:bg-yellow-300 shadow-lg" data-key="service_button_main"></a>
+              </div>
+            </div>
+            <div class="rounded-2xl bg-gray-50 flex flex-col text-center card-hover-effect overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+              <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300&q=80" class="h-48 w-full object-cover" alt="Collage de personas trabajando remotamente en varios lugares">
+              <div class="p-8 flex flex-col flex-grow">
+                <h3 class="text-2xl font-bold" data-key="service3_title"></h3>
+                <p class="text-gray-600 my-4 flex-grow" data-key="service3_desc"></p>
+                <div class="text-5xl font-extrabold text-yellow-700 my-4" data-key="service3_price"></div>
+                <a href="#contact" class="mt-auto block w-full px-6 py-3 bg-yellow-500/20 text-yellow-800 rounded-lg font-medium transition hover:bg-yellow-500 hover:text-white" data-key="service_button_alt"></a>
+              </div>
+            </div>
+          </div>
         </div>
-      <p class="text-sm">
-        &copy; <span id="year"></span> My Digital Traveler • <span data-en>All rights reserved</span><span data-es>Todos los derechos reservados</span>
-      </p>
-      <p class="text-xs mt-4 text-gray-400" data-en>Designed with ❤️ for the modern nomad.</p>
-      <p class="text-xs mt-4 text-gray-400" data-es>Diseñado con ❤️ para la nómada moderna.</p>
+      </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-24 px-6 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="section-title text-gray-900" data-key="blog_title"></h2>
+            <p class="text-gray-600 text-lg mt-4 max-w-3xl mx-auto" data-key="blog_subtitle"></p>
+          </div>
+          <div class="grid md:grid-cols-3 gap-8">
+            <!-- Blog Post 1 -->
+            <div class="bg-white rounded-2xl overflow-hidden card-hover-effect" data-aos="fade-up" data-aos-delay="100">
+              <img src="https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=2070&auto=format&fit=crop" class="h-56 w-full object-cover" alt="Robot and human hands interacting">
+              <div class="p-6">
+                <p class="text-sm text-yellow-700 font-semibold uppercase tracking-wider" data-key="blog1_category"></p>
+                <h3 class="text-xl font-bold mt-2 mb-4 h-16" data-key="blog1_title"></h3>
+                <a href="#" class="font-bold text-gray-800 hover:text-yellow-600" data-key="blog_read_more"></a>
+              </div>
+            </div>
+            <!-- Blog Post 2 -->
+            <div class="bg-white rounded-2xl overflow-hidden card-hover-effect" data-aos="fade-up" data-aos-delay="200">
+               <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=2073&auto=format&fit=crop" class="h-56 w-full object-cover" alt="Person with backpack looking at mountains">
+              <div class="p-6">
+                <p class="text-sm text-yellow-700 font-semibold uppercase tracking-wider" data-key="blog2_category"></p>
+                <h3 class="text-xl font-bold mt-2 mb-4 h-16" data-key="blog2_title"></h3>
+                <a href="#" class="font-bold text-gray-800 hover:text-yellow-600" data-key="blog_read_more"></a>
+              </div>
+            </div>
+            <!-- Blog Post 3 -->
+            <div class="bg-white rounded-2xl overflow-hidden card-hover-effect" data-aos="fade-up" data-aos-delay="300">
+               <img src="https://images.unsplash.com/photo-1509448946014-3a47de253d1a?q=80&w=2070&auto=format&fit=crop" class="h-56 w-full object-cover" alt="Silhouette of a person against a sunset">
+              <div class="p-6">
+                <p class="text-sm text-yellow-700 font-semibold uppercase tracking-wider" data-key="blog3_category"></p>
+                <h3 class="text-xl font-bold mt-2 mb-4 h-16" data-key="blog3_title"></h3>
+                <a href="#" class="font-bold text-gray-800 hover:text-yellow-600" data-key="blog_read_more"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 px-6 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <div data-aos="fade-up">
+                <h2 class="section-title text-gray-900" data-key="testimonials_title"></h2>
+                <p class="text-gray-600 text-lg mt-4 mb-20" data-key="testimonials_subtitle"></p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-x-8 gap-y-16">
+                <div class="bg-gray-50 p-8 rounded-2xl" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=96&h=96&q=80" alt="Foto de cliente Sara" class="w-24 h-24 rounded-full mx-auto -mt-20 border-4 border-white shadow-lg object-cover" />
+                    <p class="mt-6 text-gray-600 italic" data-key="testimonial1_text"></p>
+                    <h4 class="mt-4 font-semibold text-yellow-700" data-key="testimonial1_author"></h4>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1594744803329-e51172c3d5e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=96&h=96&q=80" alt="Foto de cliente Alex" class="w-24 h-24 rounded-full mx-auto -mt-20 border-4 border-white shadow-lg object-cover" />
+                    <p class="mt-6 text-gray-600 italic" data-key="testimonial2_text"></p>
+                    <h4 class="mt-4 font-semibold text-yellow-700" data-key="testimonial2_author"></h4>
+                </div>
+            </div>
+        </div>
+      </section>
+
+    <!-- Founder's Toolkit Section -->
+    <section id="toolkit" class="py-24 md:py-32 px-6 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-title text-center text-gray-900" data-aos="fade-up" data-key="toolkit_title"></h2>
+            <p class="max-w-3xl mx-auto mt-4 text-center text-lg md:text-xl text-gray-600" data-aos="fade-up" data-aos-delay="100" data-key="toolkit_subtitle"></p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mt-16">
+                <!-- AI Business Idea Generator -->
+                <div class="bg-white p-8 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                     <h3 class="text-2xl font-bold mb-3" data-key="tool_ai_business_title"></h3>
+                     <p class="text-gray-600 mb-6" data-key="tool_ai_business_desc"></p>
+                     <textarea id="skills-input" class="w-full p-3 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-yellow-500" rows="3" data-key="tool_ai_business_placeholder"></textarea>
+                     <button id="generate-ideas-btn" class="btn btn-primary w-full justify-center">
+                        <span data-key="tool_ai_business_button"></span>
+                        <span id="loading-spinner" class="spinner hidden"></span>
+                     </button>
+                     <div id="ideas-output" class="mt-6 p-4 bg-gray-100 rounded-md text-left whitespace-pre-wrap break-words hidden"></div>
+                </div>
+                <!-- AI Content Idea Generator -->
+                <div class="bg-white p-8 rounded-xl shadow-lg" data-aos="fade-up" data-aos-delay="300">
+                     <h3 class="text-2xl font-bold mb-3" data-key="tool_ai_content_title"></h3>
+                     <p class="text-gray-600 mb-6" data-key="tool_ai_content_desc"></p>
+                     <textarea id="content-niche-input" class="w-full p-3 border border-gray-300 rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-yellow-500" rows="3" data-key="tool_ai_content_placeholder"></textarea>
+                     <button id="generate-content-ideas-btn" class="btn btn-primary w-full justify-center">
+                        <span data-key="tool_ai_content_button"></span>
+                        <span id="loading-content-spinner" class="spinner hidden"></span>
+                     </button>
+                     <div id="content-ideas-output" class="mt-6 p-4 bg-gray-100 rounded-md text-left whitespace-pre-wrap break-words hidden"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="contact" class="py-24 px-6 bg-slate-800 text-white text-center">
+        <div class="max-w-2xl mx-auto" data-aos="fade-up">
+          <h2 class="section-title" data-key="contact_title"></h2>
+          <p class="my-8 text-lg text-gray-300" data-key="contact_subtitle"></p>
+          <a href="#" class="btn btn-primary">
+            <span data-key="contact_button"></span>
+          </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-12 bg-gray-900 text-gray-400">
+      <p data-key="footer_copy"></p>
+      <p class="text-sm mt-2" data-key="footer_location"></p>
     </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      // Inicializar Animate on Scroll
-      AOS.init({
-        duration: 800,
-        once: true,
-      });
-
-      // Lógica para el menú móvil
-      const navToggle = document.getElementById('nav-toggle');
-      const navMenu = document.getElementById('nav-menu');
-      if (navToggle && navMenu) {
-          navToggle.addEventListener('click', () => {
-              navMenu.classList.toggle('hidden');
-          });
-      }
-
-      // Lógica para el cambio de idioma
-      function setLanguage(lang) {
-        localStorage.setItem('lang', lang);
-        document.documentElement.lang = lang;
-        document.body.className = `font-sans text-dark-text antialiased bg-white lang-${lang}`;
-      }
-
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          setLanguage(e.target.dataset.lang);
+      document.addEventListener('DOMContentLoaded', () => {
+        AOS.init({
+          duration: 800,
+          once: true,
+          offset: 50,
+          easing: 'ease-in-out',
         });
-      });
-      
-      // Establecer idioma inicial
-      const initialLang = localStorage.getItem('lang') || (navigator.language.startsWith('es') ? 'es' : 'en');
-      setLanguage(initialLang);
+        
+        // --- TRANSLATION DATA ---
+        const translations = {
+            en: {
+                nav_logo: "My Digital Traveling ✈️",
+                nav_about: "The Mentor",
+                nav_journey: "The Journey",
+                nav_quest: "The Quest",
+                nav_services: "Services",
+                nav_blog: "Blog",
+                nav_toolkit: "AI Tools",
+                nav_infographic: "Market Data",
+                hero_main_title: "My Digital Traveling",
+                hero_subtitle_1: "Build Your Business. Live Free.",
+                hero_subtitle_2: "Your AI mentor to create a digital business that gives you the freedom to live and work from anywhere in the world.",
+                hero_button_text: "Start The Quest",
+                hero_button_secondary_text: "Explore Services",
+                about_title: "Hi, I’m Milena",
+                about_text: "I’m a former NYC ad‑exec who traded skyscrapers for sunsets. With nothing but a laptop and a vision, I’ve built a profitable brand while exploring 30+ countries. Now I teach aspiring nomads how to leverage AI, branding and smart funnels to design a life without borders. My mission is to help you build yours.",
+                pillars_title: "It's a movement.",
+                pillars_subtitle: "We integrate three key pillars to help you design a life aligned with your purpose.",
+                pillar1_title: "Digital Freedom",
+                pillar1_text: "Education in branding, automation, and marketing with AI to monetize your skills.",
+                pillar2_title: "Nomad Lifestyle",
+                pillar2_text: "Guides, resources, and partnerships to travel the world smarter and connect with a global community.",
+                pillar3_title: "Personal Empowerment",
+                pillar3_text: "Mentorship and inspiring content to help you rewrite your story and live with purpose.",
+                infographic_title: "The Digital Nomad Market",
+                infographic_subtitle: "We are facing a global paradigm shift in how we live and work. Digital nomadism is not a trend; it's a growing revolution with a clear demand for integrated services.",
+                kpi1_label: "Nomads Projected by 2025",
+                kpi2_label: "Nomad Growth in USA (2019-2025)",
+                kpi3_label: "Average Annual Income",
+                chart1_title: "Nomad Generations",
+                chart2_title: "Geographic Arbitrage: The Key Advantage",
+                intro_title: "The Founder's Journey",
+                intro_subtitle: "Starting up is an exciting journey. We designed this guide to accompany you at every stage, from the spark of an idea to the launch of your business. Let's build together!",
+                step1_title: "Define Your Idea",
+                step1_text: "Every great business starts with an idea. Here you will learn to identify problems, find innovative solutions, and validate if your idea has market potential.",
+                step2_title: "Research the Market",
+                step2_text: "Who are your customers? And your competitors? Analyze the market, understand your target audience, and find your niche.",
+                step3_title: "Create Your Plan",
+                step3_text: "A business plan is your map to success. We will help you structure your mission, marketing strategies, and financial projections.",
+                step4_title: "Develop Your Brand",
+                step4_text: "Your brand is how the world perceives you. From the name and logo to your social media strategy, here you will define your identity.",
+                step5_title: "Launch & Promote",
+                step5_text: "It's time to show your business to the world! We'll give you a checklist for a successful launch and initial promotion strategies.",
+                step_button: "Test in The Quest",
+                services_title: "Mentorships to Boost Your Brand",
+                services_subtitle: "From idea to income, together. Choose the path that best suits your moment.",
+                service1_title: "Nomad Kit 🌍",
+                service1_desc: "The essentials to launch your digital presence: mini-brand, a sales funnel, and a 30-min strategy session.",
+                service1_price: "$197",
+                service2_title: "Brand Boost 🚀",
+                service2_desc: "Pro branding, 3 sales funnels with email sequences, and 3 hours of personalized mentorship to accelerate your growth.",
+                service2_price: "$997",
+                service3_title: "Empire Builder 💼",
+                service3_desc: "The complete suite to build your remote empire: full brand identity, website, 5 funnels, and 6 hours of mentorship & automations.",
+                service3_price: "$1,997",
+                service_button: "Start Now",
+                service_button_main: "Boost Me",
+                service_button_alt: "Let’s Build",
+                blog_title: "From Our Blog",
+                blog_subtitle: "Insights, guides, and stories to fuel your entrepreneurial journey.",
+                blog1_category: "AI & Productivity",
+                blog1_title: "5 AI Tools That Will Save You 10 Hours a Week",
+                blog2_category: "Digital Nomadism",
+                blog2_title: "How to Build a Business While Traveling the World",
+                blog3_category: "Mindset",
+                blog3_title: "The Founder's Mindset: Overcoming Imposter Syndrome",
+                blog_read_more: "Read More →",
+                testimonials_title: "Real Stories, Real Transformations",
+                testimonials_subtitle: "Hear from women who have changed their lives with our guidance.",
+                testimonial1_text: "“The funnels Milena built doubled my course sales while I was hiking in Patagonia.”",
+                testimonial1_author: "Sara – 🇦🇷",
+                testimonial2_text: "“Milena’s mentorship helped me quit my 9-5 and land my first remote client in just 6 weeks.”",
+                testimonial2_author: "Alex – 🇨🇦",
+                toolkit_title: "Founder's AI Toolkit",
+                toolkit_subtitle: "Interactive tools to spark your creativity and accelerate your business.",
+                tool_ai_business_title: "AI Business Idea Generator",
+                tool_ai_business_desc: "Describe your skills and interests, and our AI will help you find innovative business ideas.",
+                tool_ai_business_placeholder: "e.g., digital marketing, graphic design, writing, travel, languages, coaching...",
+                tool_ai_business_button: "Generate Business Ideas ✨",
+                tool_ai_content_title: "AI Content Idea Generator",
+                tool_ai_content_desc: "Need inspiration for your blog or social media? Describe your niche and get fresh ideas.",
+                tool_ai_content_placeholder: "e.g., luxury travel, affiliate marketing for beginners, wellness for nomads...",
+                tool_ai_content_button: "Generate Content Ideas ✨",
+                contact_title: "Ready to Transform Your Life?",
+                contact_subtitle: "Schedule a free discovery call or drop me a message. Let's build your dream life, together.",
+                contact_button: "Let's Talk",
+                footer_copy: "© 2025 My Digital Traveling · Powering tomorrow's creators.",
+                footer_location: "From Medellín, Colombia, to the world.",
+                // Game translations
+                splash_title1: "Welcome to",
+                splash_title2: "Startup Quest!",
+                splash_subtitle: "Your adventure to create a tech & AI startup from scratch begins here. Face challenges, get feedback from our AI, and turn your idea into reality! 🌟",
+                splash_button: "Start Adventure! 🚀",
+                phase_title: "Phase",
+                challenge_title: "Challenge 🎯",
+                response_title: "Your Response for Phase",
+                response_placeholder: "Describe your plan for Phase {phase}... Be detailed and creative!",
+                submit_button: "Submit Phase {phase} Response ✨",
+                evaluating_button: "Evaluating... 🤖",
+                feedback_title: "AI Mentor Feedback 🤖",
+                score_text: "Score awarded",
+                next_phase_button: "Continue to",
+                demoday_button: "Demo Day",
+                demoday_title: "Phase 7: Demo Day 🎉",
+                demoday_congrats: "Congratulations! You've reached Demo Day. Here is the summary of your incredible entrepreneurial journey: 🌟",
+                demoday_badge: '🌟 You have earned the "Startup Quest Complete" badge! A true entrepreneur! 🏆',
+                play_again_button: "Play Again 🔄",
+                xp_total: "Total XP",
+                info_start: "The adventure begins! Good luck, founder!",
+                info_evaluating: "Evaluating your response for Phase {phase}... 🤖",
+                info_score: "Score: {score}/10. You've earned {xp} XP. Congratulations! 🎉",
+                info_transition: "Transitioning to Phase {phase}: {phaseName}... ➡️",
+                info_restart: "Game restarted! Begin a new Startup Quest adventure. 🚀",
+                info_empty_input: "Please enter your response before submitting. ✍️",
+                info_api_error: "There was a problem contacting the AI Mentor. Please try again later.",
+                one_pager_title_1: "1. Central Idea 🧠:",
+                one_pager_title_2: "2. Validation Strategy ✅:",
+                one_pager_title_3: "3. Prototype/MVP 🛠️:",
+                one_pager_title_4: "4. Go-to-Market Plan 🚀:",
+                one_pager_title_5: "5. Key Metrics 📈:",
+                one_pager_title_6: "6. Winning Pitch 🎤:",
+                one_pager_default: "Not provided.",
+                phases: [
+                    { name: 'Ideation', icon: '🧠', description: 'Time to dream big! Propose an innovative AI-based business idea that solves a real problem. Think of a sector or task where AI can make a big difference. ✨\n\n**Example:** "An AI platform that personalizes learning paths for students, adapting to their pace and style, using NLP to analyze their progress and suggest resources." 📚🤖' },
+                    { name: 'Validation', icon: '✅', description: 'After the big idea, it\'s crucial to validate it. Describe how you would check if your idea has a market. Who is your target audience? How would you gather initial feedback? Is there competition, and how would you differentiate? 🕵️‍♀️📊\n\n**Example:** "We will conduct interviews with 50 students and 10 teachers to understand their pain points. We will launch a survey on social media to gauge interest and analyze existing platforms like Coursera or Udemy to identify gaps." 🗣️🔍' },
+                    { name: 'Prototype', icon: '🛠️', description: 'Let\'s get to work! Describe the prototype or MVP (Minimum Viable Product) of your product. What features or components would this minimal first version have? If it\'s physical, how would you build it? If it\'s a service, how would you implement it initially, manually or with simple tools? 🏗️💻\n\n**Example:** "We will develop a Telegram bot with basic AI that suggests personalized articles and videos based on keywords the user provides, simulating the main functionality of path personalization." 💬✨' },
+                    { name: 'Go-to-Market', icon: '🚀', description: 'How would you launch your product to the world? Explain your launch strategy. How will you get your first customers (Early Adopters)? What marketing channels will you use (social media, influencers, blogs)? Do you plan any partnerships or launch events? Also, include how you will monetize initially (freemium model, subscription, one-time sale). 💰📢\n\n**Example:** "We will launch a teaser campaign on TikTok and Instagram with educational micro-influencers. We will offer a freemium version with basic features and a premium subscription for full access. We will seek partnerships with language academies." 📈🤝' },
+                    { name: 'Metrics', icon: '📈', description: 'To know if you are on the right track, you need metrics. What key performance indicators (KPIs) will you track to evaluate your startup\'s performance? Mention 2-3 main metrics and, if you can, short-term numerical goals. Explain why these metrics matter! 📊🎯\n\n**Example:** "Key metrics: 1. Daily Active Users (DAU) - Goal: 500 in 3 months. 2. Retention Rate (Day 7) - Goal: 30%. 3. Customer Acquisition Cost (CAC) - Goal: less than $5. These metrics will tell us if the product is useful and if the marketing investment is efficient." 📉✅' },
+                    { name: 'Pitch', icon: '🎤', description: 'Your time to shine! Prepare a pitch for investors or a jury. Write an elevator pitch-style summary of your startup in 5-6 sentences, emphasizing what it does, who it benefits, and what makes it special. Also, prepare 2 possible tough questions from investors and your answers. 🗣️💼\n\n**Example Pitch:** "In a world where learning is generic, EduAI personalizes education with AI, offering unique paths to each student. We help millions learn faster and better, optimizing their potential. We are the future of adaptive education, beyond current limits."\n\n**Q&A:** "What is your monetization strategy to be profitable?" - "Our freemium model attracts users, and the premium subscription for advanced features ensures recurring revenue, aiming for a 10% conversion rate in the first year." 🤔💡' },
+                    { name: 'Demo Day', icon: '🎉', description: 'You have reached the finish line! This is your big day. A final summary of your project will be displayed here, and you can celebrate your hard work. It\'s time to reap the rewards! 🏆🎊' },
+                ]
+            },
+            es: {
+                nav_logo: "My Digital Traveling ✈️",
+                nav_about: "La Mentora",
+                nav_journey: "El Viaje",
+                nav_quest: "La Aventura",
+                nav_services: "Servicios",
+                nav_blog: "Blog",
+                nav_toolkit: "Herramientas IA",
+                nav_infographic: "Datos del Mercado",
+                hero_main_title: "My Digital Traveling",
+                hero_subtitle_1: "Crea tu Negocio. Vive Libre.",
+                hero_subtitle_2: "Tu mentor de IA para crear un negocio digital que te da la libertad de vivir y trabajar desde cualquier parte del mundo.",
+                hero_button_text: "Comenzar la Aventura",
+                hero_button_secondary_text: "Ver Servicios",
+                about_title: "Hola, soy Milena",
+                about_text: "Soy una ex-publicista de Nueva York que cambió los rascacielos por atardeceres. Con solo una laptop y una visión, he construido una marca rentable mientras exploro más de 30 países. Ahora enseño a futuros nómadas a usar IA, branding y embudos inteligentes para diseñar una vida sin fronteras. Mi misión es ayudarte a construir la tuya.",
+                pillars_title: "Es un movimiento.",
+                pillars_subtitle: "Integramos tres pilares clave para ayudarte a diseñar una vida alineada con tu propósito.",
+                pillar1_title: "Libertad Digital",
+                pillar1_text: "Educación en branding, automatización y marketing con IA para que monetices tus habilidades.",
+                pillar2_title: "Estilo de Vida Nómada",
+                pillar2_text: "Guías, recursos y alianzas para viajar por el mundo de forma inteligente y conectar con una comunidad global.",
+                pillar3_title: "Empoderamiento Personal",
+                pillar3_text: "Mentoría y contenido inspirador para ayudarte a reescribir tu historia y vivir con propósito.",
+                infographic_title: "El Mercado Nómada Digital",
+                infographic_subtitle: "Estamos ante un cambio de paradigma global en la forma de vivir y trabajar. El nomadismo digital no es una tendencia, es una revolución en crecimiento.",
+                kpi1_label: "Nómadas Proyectados para 2025",
+                kpi2_label: "Crecimiento Nómada en EE.UU. (2019-2025)",
+                kpi3_label: "Ingreso Anual Promedio",
+                chart1_title: "Generaciones Nómadas",
+                chart2_title: "Arbitraje Geográfico: La Ventaja Clave",
+                intro_title: "El Viaje del Emprendedor",
+                intro_subtitle: "Emprender es un viaje emocionante. Hemos diseñado esta guía para acompañarte en cada etapa, desde la chispa de una idea hasta el lanzamiento de tu negocio. ¡Vamos a construir juntos!",
+                step1_title: "Define tu Idea",
+                step1_text: "Todo gran negocio comienza con una idea. Aquí aprenderás a identificar problemas, encontrar soluciones innovadoras y validar si tu idea tiene potencial en el mercado.",
+                step2_title: "Investiga el Mercado",
+                step2_text: "¿Quiénes son tus clientes? ¿Y tus competidores? Analiza el mercado, entiende a tu audiencia y encuentra tu nicho.",
+                step3_title: "Crea tu Plan",
+                step3_text: "Un plan de negocios es tu mapa al éxito. Te ayudaremos a estructurar tu misión, estrategias de marketing y proyecciones financieras.",
+                step4_title: "Desarrolla tu Marca",
+                step4_text: "Tu marca es cómo el mundo te percibe. Desde el nombre y el logo hasta tu estrategia en redes sociales, aquí definirás tu identidad.",
+                step5_title: "Lanza y Promociona",
+                step5_text: "¡Es el momento de mostrarle tu negocio al mundo! Te daremos un checklist para un lanzamiento exitoso y estrategias de promoción.",
+                step_button: "Probar en La Aventura",
+                services_title: "Mentorías para Impulsar tu Marca",
+                services_subtitle: "De la idea a los ingresos, juntas. Elige el plan que mejor se adapte a tu momento.",
+                service1_title: "Kit Nómada 🌍",
+                service1_desc: "Lo esencial para lanzar tu presencia digital: mini-branding, un embudo de ventas y 30 min de mentoría estratégica.",
+                service1_price: "$197",
+                service2_title: "Impulso de Marca 🚀",
+                service2_desc: "Branding pro, 3 embudos de venta con secuencias de email y 3 horas de mentoría personalizada para acelerar tu crecimiento.",
+                service2_price: "$997",
+                service3_title: "Crea tu Imperio 💼",
+                service3_desc: "La suite completa para tu imperio remoto: identidad de marca premium, sitio web, 5 embudos, 6 horas de mentoría y automatizaciones.",
+                service3_price: "$1,997",
+                service_button: "Empezar Ahora",
+                service_button_main: "Impulsar",
+                service_button_alt: "Construir",
+                blog_title: "Desde Nuestro Blog",
+                blog_subtitle: "Ideas, guías e historias para impulsar tu viaje emprendedor.",
+                blog1_category: "IA y Productividad",
+                blog1_title: "5 Herramientas de IA que te Ahorrarán 10 Horas a la Semana",
+                blog2_category: "Nomadismo Digital",
+                blog2_title: "Cómo Construir un Negocio Mientras Viajas por el Mundo",
+                blog3_category: "Mentalidad",
+                blog3_title: "La Mentalidad del Fundador: Cómo Superar el Síndrome del Impostor",
+                blog_read_more: "Leer Más →",
+                testimonials_title: "Historias Reales, Transformaciones Reales",
+                testimonials_subtitle: "Escucha a mujeres que han cambiado su vida con nuestra guía.",
+                testimonial1_text: "“Los embudos que Milena creó duplicaron las ventas de mi curso mientras yo estaba de viaje en la Patagonia.”",
+                testimonial1_author: "Sara – 🇦🇷",
+                testimonial2_text: "“La mentoría de Milena me ayudó a dejar mi trabajo y conseguir mi primer cliente remoto en solo 6 semanas.”",
+                testimonial2_author: "Alex – 🇨🇦",
+                toolkit_title: "Caja de Herramientas IA",
+                toolkit_subtitle: "Herramientas interactivas para despertar tu creatividad y acelerar tu negocio.",
+                tool_ai_business_title: "Generador de Ideas de Negocio con IA",
+                tool_ai_business_desc: "Describe tus habilidades e intereses, y nuestra IA te ayudará a encontrar ideas de negocio innovadoras.",
+                tool_ai_business_placeholder: "Ej: marketing digital, diseño gráfico, escritura, viajes, idiomas, coaching...",
+                tool_ai_business_button: "Generar Ideas de Negocio ✨",
+                tool_ai_content_title: "Generador de Ideas de Contenido con IA",
+                tool_ai_content_desc: "Describe tu nicho y obtén ideas frescas para tu blog o redes sociales.",
+                tool_ai_content_placeholder: "Ej: viajes de lujo, marketing de afiliados para principiantes, bienestar para nómadas...",
+                tool_ai_content_button: "Generar Ideas de Contenido ✨",
+                contact_title: "¿Lista para Transformar tu Vida?",
+                contact_subtitle: "Agenda una llamada de descubrimiento gratis o envíame un mensaje. Construyamos la vida de tus sueños, juntas.",
+                contact_button: "Hablemos",
+                footer_copy: "© 2025 My Digital Traveling · Impulsando a los creadores del mañana.",
+                footer_location: "Desde Medellín, Colombia, para el mundo.",
+                // Game translations
+                splash_title1: "¡Bienvenido a",
+                splash_title2: "Startup Quest!",
+                splash_subtitle: "Tu aventura para crear una startup de tecnología e IA desde cero comienza aquí. ¡Enfréntate a desafíos, recibe feedback de nuestra IA y transforma tu idea en realidad! 🌟",
+                splash_button: "¡Empezar Aventura! 🚀",
+                phase_title: "Fase",
+                challenge_title: "Desafío 🎯",
+                response_title: "Tu Respuesta para la Fase",
+                response_placeholder: "Describe aquí tu plan para la Fase {phase}... ¡Sé detallado y creativo!",
+                submit_button: "Enviar Respuesta de Fase {phase} ✨",
+                evaluating_button: "Evaluando... 🤖",
+                feedback_title: "Feedback del Mentor IA 🤖",
+                score_text: "Puntuación otorgada",
+                next_phase_button: "Continuar a",
+                demoday_button: "Demo Day",
+                demoday_title: "Fase 7: Demo Day 🎉",
+                demoday_congrats: "¡Felicidades! Has llegado al Demo Day. Aquí está el resumen de tu increíble viaje emprendedor: 🌟",
+                demoday_badge: '🌟 ¡Has ganado la insignia "Startup Quest Completo"! ¡Un verdadero emprendedor! 🏆',
+                play_again_button: "Jugar de Nuevo 🔄",
+                xp_total: "XP Total",
+                info_start: "¡La aventura comienza! ¡Mucha suerte, emprendedor!",
+                info_evaluating: "Evaluando tu respuesta para la Fase {phase}... 🤖",
+                info_score: "Puntuación: {score}/10. Has ganado {xp} XP. ¡Felicidades! 🎉",
+                info_transition: "Transicionando a la Fase {phase}: {phaseName}... ➡️",
+                info_restart: "¡Juego reiniciado! Comienza una nueva aventura de Startup Quest. 🚀",
+                info_empty_input: "Por favor, introduce tu respuesta antes de enviarla. ✍️",
+                info_api_error: "Hubo un problema contactando al Mentor IA. Por favor, intenta de nuevo más tarde.",
+                one_pager_title_1: "1. Idea Central 🧠:",
+                one_pager_title_2: "2. Estrategia de Validación ✅:",
+                one_pager_title_3: "3. Prototipo/MVP 🛠️:",
+                one_pager_title_4: "4. Plan de Salida al Mercado 🚀:",
+                one_pager_title_5: "5. Métricas Clave 📈:",
+                one_pager_title_6: "6. Pitch Ganador 🎤:",
+                one_pager_default: "No proporcionado.",
+                phases: [
+                    { name: 'Ideación', icon: '🧠', description: '¡Es hora de soñar en grande! Propón una idea de negocio innovadora basada en IA que resuelva un problema real. Piensa en un sector o tarea donde la IA pueda marcar una gran diferencia. ✨\n\n**Ejemplo:** "Una plataforma de IA que personaliza rutas de aprendizaje para estudiantes, adaptándose a su ritmo y estilo, utilizando PNL para analizar su progreso y sugerir recursos." 📚🤖' },
+                    { name: 'Validación', icon: '✅', description: 'Después de la gran idea, es crucial validarla. Describe cómo comprobarías que tu idea tiene mercado. ¿Quién es tu público objetivo? ¿Cómo recogerías feedback inicial? ¿Existe competencia y cómo te diferenciarías? 🕵️‍♀️📊\n\n**Ejemplo:** "Realizaremos entrevistas a 50 estudiantes y 10 profesores para entender sus puntos de dolor. Lanzaremos una encuesta en redes sociales para medir el interés y analizaremos plataformas existentes como Coursera o Udemy para identificar brechas." 🗣️🔍' },
+                    { name: 'Prototipo', icon: '🛠️', description: '¡Manos a la obra! Describe el prototipo o MVP (Producto Mínimo Viable) de tu producto. ¿Qué funciones o componentes tendría esta primera versión mínima? Si es físico, ¿cómo lo construirías? Si es un servicio, ¿cómo lo implementarías inicialmente, de forma manual o con herramientas simples? 🏗️💻\n\n**Ejemplo:** "Desarrollaremos un bot de Telegram con IA básica que sugiera artículos y videos personalizados basados en las palabras clave que el usuario proporcione, simulando la funcionalidad principal de personalización de rutas." 💬✨' },
+                    { name: 'Salida al Mercado', icon: '🚀', description: '¿Cómo lanzarías tu producto al mundo? Explica tu estrategia de lanzamiento. ¿Cómo conseguirás a tus primeros clientes (Early Adopters)? ¿Qué canales de marketing usarás (redes sociales, influencers, blogs)? ¿Planeas alguna asociación o evento de lanzamiento? Incluye también cómo monetizarás inicialmente (modelo freemium, suscripción, venta única). 💰📢\n\n**Ejemplo:** "Lanzaremos una campaña de expectación en TikTok e Instagram con micro-influencers educativos. Ofreceremos una versión freemium con funcionalidades básicas y una suscripción premium para acceso completo. Buscaremos alianzas con academias de idiomas." 📈🤝' },
+                    { name: 'Métricas', icon: '📈', description: 'Para saber si vas por el camino correcto, necesitas métricas. ¿Qué indicadores clave de rendimiento (KPIs) seguirás para evaluar el desempeño de tu startup? Menciona 2-3 métricas principales y, si puedes, metas numéricas a corto plazo. ¡Explica por qué esas métricas son importantes! 📊🎯\n\n**Ejemplo:** "Métricas clave: 1. Usuarios Activos Diarios (DAU) - Meta: 500 en 3 meses. 2. Tasa de Retención (Día 7) - Meta: 30%. 3. Costo de Adquisición de Cliente (CAC) - Meta: menos de $5. Estas métricas nos dirán si el producto es útil y si la inversión en marketing es eficiente." 📉✅' },
+                    { name: 'Pitch', icon: '🎤', description: '¡Tu momento de brillar! Prepara un pitch (discurso de venta) para inversores o un jurado. Escribe un resumen estilo elevator pitch de tu startup en 5-6 frases, enfatizando qué hace, a quién beneficia y qué la hace especial. Prepara también 2 posibles preguntas difíciles de inversores y tus respuestas. 🗣️💼\n\n**Ejemplo de Pitch:** "En un mundo donde el aprendizaje es genérico, EduAI personaliza la educación con IA, ofreciendo rutas únicas a cada estudiante. Ayudamos a millones a aprender más rápido y mejor, optimizando su potencial. Somos el futuro de la educación adaptativa, más allá de los límites actuales."\n\n**P&R:** "¿Cuál es su estrategia de monetización para ser rentable?" - "Nuestro modelo freemium atrae a los usuarios, y la suscripción premium para funciones avanzadas asegura ingresos recurrentes, apuntando a una conversión del 10% en el primer año." 🤔💡' },
+                    { name: 'Demo Day', icon: '🎉', description: '¡Has llegado a la meta! Este es tu gran día. Aquí se mostrará un resumen final de tu proyecto y podrás celebrar tu arduo trabajo. ¡Es el momento de cosechar los frutos! 🏆🎊' },
+                ]
+            }
+        };
 
-      // Año actual para el footer
-      document.getElementById("year").textContent = new Date().getFullYear();
+        // --- GAME STATE & LOGIC ---
+        
+        let currentLang = 'es'; // Default language to Spanish
+        let showSplash = true;
+        let currentPhase = 1;
+        let phaseInput = '';
+        let phaseResults = {};
+        let isLoading = false;
+        let xp = 0;
+        let badgeMessage = '';
+        let infoMessage = translations[currentLang].info_start;
+
+        const gameContainer = document.getElementById('startup-quest-section');
+        const totalPhases = translations.en.phases.length;
+
+        // --- RENDER FUNCTIONS ---
+        
+        function renderApp() {
+            if (showSplash) {
+                gameContainer.innerHTML = SplashScreen();
+                document.getElementById('start-adventure-btn').addEventListener('click', () => {
+                    showSplash = false;
+                    renderApp();
+                });
+            } else {
+                gameContainer.innerHTML = `
+                    <div class="w-full max-w-3xl mx-auto bg-white/90 rounded-xl shadow-2xl p-6 sm:p-8 md:p-10 transform transition-all duration-300 scale-95 hover:scale-100" data-aos="zoom-in">
+                        <h1 class="text-4xl font-extrabold text-center text-slate-800 mb-8 tracking-tight" data-key="splash_title2"></h1>
+                        ${PhaseProgress()}
+                        <div id="phase-content"></div>
+                        <div class="mt-8 text-center text-lg text-gray-700 font-medium bg-gray-100 p-4 rounded-lg shadow-inner">
+                            <p><span data-key="xp_total"></span>: <span class="font-bold text-slate-700">${xp}</span> 🌟</p>
+                            <p class="mt-2 text-md text-gray-600" id="info-message">${infoMessage}</p>
+                        </div>
+                    </div>
+                `;
+                renderPhaseContent();
+            }
+            setLanguageUI(currentLang);
+        }
+
+        function SplashScreen() {
+            return `
+                <div class="flex flex-col items-center justify-center text-center p-4" data-aos="fade-in">
+                    <div class="relative mb-8 animate-bounce" style="animation-duration: 2s;">
+                      <span role="img" aria-label="Rocket" class="text-7xl">🚀</span>
+                    </div>
+                    <h2 class="text-center text-slate-800 text-shadow-lg leading-tight mb-8">
+                      <span class="text-4xl sm:text-5xl font-extrabold block" data-key="splash_title1"></span>
+                      <span class="text-6xl sm:text-7xl font-extrabold text-yellow-500 block mt-2" data-key="splash_title2"></span>
+                    </h2>
+                    <p class="text-xl font-light mb-8 max-w-2xl text-gray-600" data-key="splash_subtitle"></p>
+                    <button id="start-adventure-btn" class="btn btn-primary text-slate-800 font-bold text-xl px-10 py-5 rounded-full animate-pulse">
+                        <span data-key="splash_button"></span>
+                    </button>
+                </div>
+            `;
+        }
+
+        function PhaseProgress() {
+            let progressHTML = '';
+            for (let i = 0; i < totalPhases; i++) {
+                const isActive = i + 1 <= currentPhase;
+                progressHTML += `
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-lg sm:text-xl font-bold transition-all duration-500
+                      ${isActive ? 'bg-green-500 text-white transform scale-110 shadow-lg' : 'bg-gray-300 text-gray-600'}">
+                      ${i + 1}
+                    </div>
+                `;
+            }
+            return `<div class="flex justify-between items-center mb-8 px-4 sm:px-0">${progressHTML}</div>`;
+        }
+
+        function renderPhaseContent() {
+            const phaseContentContainer = document.getElementById('phase-content');
+            if (!phaseContentContainer) return;
+
+            const phaseIndex = currentPhase - 1;
+            const currentPhaseData = translations[currentLang].phases[phaseIndex];
+            const hasEvaluated = phaseResults[currentPhase]?.feedback;
+
+            if (currentPhase === totalPhases) { // Demo Day
+                phaseContentContainer.innerHTML = `
+                    <div class="bg-white bg-opacity-80 shadow-lg rounded-lg p-6 mb-6 text-center">
+                        <h3 class="font-bold text-2xl mb-4 text-gray-800" data-key="demoday_title"></h3>
+                        <p class="text-lg text-gray-700 mb-6" data-key="demoday_congrats"></p>
+                        <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 text-left mb-6 overflow-auto max-h-[400px]" id="one-pager">
+                            ${generateOnePager()}
+                        </div>
+                        <p class="text-xl font-bold text-green-700 mb-4 animate-bounce" data-key="demoday_badge"></p>
+                        <button id="play-again-btn" class="btn btn-primary mt-6"><span data-key="play_again_button"></span></button>
+                    </div>
+                `;
+                document.getElementById('play-again-btn').addEventListener('click', handleRestartGame);
+            } else {
+                phaseContentContainer.innerHTML = `
+                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-6"><span data-key="phase_title"></span> ${currentPhase}: ${currentPhaseData.name} ${currentPhaseData.icon}</h2>
+                    <div class="bg-white bg-opacity-80 shadow-lg rounded-lg p-6 mb-6">
+                        <h3 class="font-bold text-2xl mb-4 text-gray-800" data-key="challenge_title"></h3>
+                        <p class="text-lg text-gray-700 leading-relaxed whitespace-pre-wrap">${currentPhaseData.description.replace(/\n/g, '<br>')}</p>
+                    </div>
+                    ${!hasEvaluated ? renderResponseCard() : renderFeedbackCard()}
+                `;
+                if (!hasEvaluated) {
+                    const textarea = document.getElementById('phase-input-textarea');
+                    textarea.addEventListener('input', (e) => phaseInput = e.target.value);
+                    document.getElementById('submit-phase-btn').addEventListener('click', handleSubmitPhase);
+                } else {
+                    document.getElementById('next-phase-btn').addEventListener('click', handleNextPhase);
+                }
+            }
+            setLanguageUI(currentLang);
+        }
+        
+        function renderResponseCard() {
+            return `
+                <div class="bg-white bg-opacity-80 shadow-lg rounded-lg p-6 mb-6">
+                    <h3 class="font-bold text-2xl mb-4 text-gray-800"><span data-key="response_title"></span> ${currentPhase} ✍️</h3>
+                    <textarea id="phase-input-textarea" class="w-full p-4 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 transition-all duration-200 text-lg min-h-[180px] mb-4"
+                      rows="8" placeholder="${translations[currentLang].response_placeholder.replace('{phase}', currentPhase)}">${phaseInput}</textarea>
+                    <div class="text-center mt-6">
+                        <button id="submit-phase-btn" class="btn btn-primary" ${isLoading ? 'disabled' : ''}>
+                            ${isLoading ? `<span data-key="evaluating_button"></span>` : `<span data-key="submit_button" data-phase="${currentPhase}"></span>`}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderFeedbackCard() {
+            const result = phaseResults[currentPhase];
+            const nextPhaseName = currentPhase < totalPhases - 1 ? translations[currentLang].phases[currentPhase].name : `<span data-key="demoday_button"></span>`;
+            return `
+                <div class="bg-white bg-opacity-80 shadow-lg rounded-lg p-6 mb-6" data-aos="flip-left">
+                    <h3 class="font-bold text-2xl mb-4 text-gray-800" data-key="feedback_title"></h3>
+                    <p class="text-lg mb-4 text-gray-700 leading-relaxed italic">"${result.feedback}"</p>
+                    <p class="text-xl font-bold text-slate-700 mb-4 flex items-center justify-center">
+                        <span data-key="score_text"></span>: <span class="text-3xl mx-2">${result.score}</span>/10 <span class="text-yellow-400 text-2xl">⭐</span>
+                    </p>
+                    ${badgeMessage ? `<p class="text-lg font-semibold text-green-600 bg-green-100 p-3 rounded-md mb-4 animate-pulse">${badgeMessage}</p>` : ''}
+                    <div class="text-center mt-6">
+                        <button id="next-phase-btn" class="btn bg-green-600 hover:bg-green-700 text-white">
+                            <span data-key="next_phase_button"></span> ${nextPhaseName} ➡️
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- GAME LOGIC HANDLERS ---
+        
+        async function handleSubmitPhase() {
+            if (!phaseInput.trim()) {
+                infoMessage = translations[currentLang].info_empty_input;
+                renderApp();
+                return;
+            }
+            isLoading = true;
+            infoMessage = translations[currentLang].info_evaluating.replace('{phase}', currentPhase);
+            badgeMessage = '';
+            renderApp();
+
+            phaseResults[currentPhase] = { input: phaseInput };
+            const result = await getAIEvaluation(currentPhase - 1, phaseInput, currentLang);
+            phaseResults[currentPhase] = { ...phaseResults[currentPhase], ...result };
+            
+            xp += result.xpEarned;
+            badgeMessage = result.newBadge;
+            infoMessage = translations[currentLang].info_score.replace('{score}', result.score).replace('{xp}', result.xpEarned);
+            isLoading = false;
+            renderApp();
+        }
+
+        function handleNextPhase() {
+            if (currentPhase < totalPhases) {
+                currentPhase++;
+                phaseInput = '';
+                badgeMessage = '';
+                infoMessage = translations[currentLang].info_transition.replace('{phase}', currentPhase).replace('{phaseName}', translations[currentLang].phases[currentPhase - 1].name);
+                renderApp();
+            }
+        }
+        
+        function handleRestartGame() {
+            showSplash = true;
+            currentPhase = 1;
+            phaseInput = '';
+            phaseResults = {};
+            isLoading = false;
+            xp = 0;
+            badgeMessage = '';
+            infoMessage = translations[currentLang].info_start;
+            renderApp();
+        }
+
+        async function getAIEvaluation(phaseIndex, userInput, lang) {
+            const phaseData = translations[lang].phases[phaseIndex];
+            const prompt = `
+                You are an expert AI mentor for tech startups, named "Founder AI Mentor".
+                A user is in Phase ${phaseIndex + 1} ("${phaseData.name}") of the "Startup Quest" game.
+                The challenge for this phase is: "${phaseData.description.replace(/\*\*|(\r\n|\n|\r)/gm, " ").substring(0, 300)}..."
+                The user's response is: "${userInput}"
+
+                Your task is to evaluate this response. Provide:
+                1.  A "score" from 1 to 10. A score of 10 is for a perfect, professional-level response. A score of 5 is for a response that is weak or lacks detail.
+                2.  A "feedback" message (in ${lang === 'es' ? 'Spanish' : 'English'}) that is constructive, encouraging, and acts as a mentor. It should be 2-4 sentences long.
+                3.  A short, encouraging "badge" title (in ${lang === 'es' ? 'Spanish' : 'English'}) if the score is 8 or higher (e.g., "Visionary Strategist", "Master of Prototypes"). If the score is below 8, return an empty string for the badge.
+
+                Analyze the user's response based on the challenge. Is it detailed? Creative? Realistic? Does it address the key points of the phase?
+            `;
+
+            const schema = {
+                type: "OBJECT",
+                properties: {
+                    score: { type: "NUMBER", description: "A score from 1-10 for the user's response." },
+                    feedback: { type: "STRING", description: "Constructive feedback for the user in the specified language." },
+                    badge: { type: "STRING", description: "An encouraging title if score is >= 8, otherwise an empty string." },
+                },
+                required: ["score", "feedback", "badge"]
+            };
+
+            const apiKey = ""; // This will be handled by the execution environment.
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ role: "user", parts: [{ text: prompt }] }],
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: schema,
+                    temperature: 0.5,
+                }
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    console.error("API Error Response:", await response.text());
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates[0].content.parts[0].text) {
+                    const aiResponse = JSON.parse(result.candidates[0].content.parts[0].text);
+                    const xpEarned = (aiResponse.score * 10) + (phaseIndex * 15);
+                    return { ...aiResponse, xpEarned, newBadge: aiResponse.badge };
+                } else {
+                    throw new Error("Invalid response structure from API.");
+                }
+            } catch (error) {
+                console.error("Error calling Gemini API:", error);
+                const feedbackText = translations[lang].info_api_error;
+                return { score: 0, feedback: feedbackText, newBadge: '', xpEarned: 0 };
+            }
+        }
+
+
+        function generateOnePager() {
+            const defaultText = translations[currentLang].one_pager_default;
+            const getPhaseInput = (phaseNum) => phaseResults[phaseNum]?.input?.substring(0, 300) || defaultText;
+            
+            return `
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">${translations[currentLang].one_pager_title_1}</h4>
+                <p class="text-gray-700 mb-4">${getPhaseInput(1)}</p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">${translations[currentLang].one_pager_title_2}</h4>
+                <p class="text-gray-700 mb-4">${getPhaseInput(2)}</p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">${translations[currentLang].one_pager_title_3}</h4>
+                <p class="text-gray-700 mb-4">${getPhaseInput(3)}</p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">${translations[currentLang].one_pager_title_4}</h4>
+                <p class="text-gray-700 mb-4">${getPhaseInput(4)}</p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">${translations[currentLang].one_pager_title_5}</h4>
+                <p class="text-gray-700 mb-4">${getPhaseInput(5)}</p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">${translations[currentLang].one_pager_title_6}</h4>
+                <p class="text-gray-700 mb-4">${getPhaseInput(6)}</p>
+            `;
+        }
+        
+        // --- UI & LANGUAGE LOGIC ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const langToggleBtnDesktop = document.getElementById('lang-toggle-desktop');
+        const langToggleBtnMobile = document.getElementById('lang-toggle-mobile');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+            hamburgerIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                toggleMobileMenu();
+            }
+        });
+
+        function handleLanguageToggle() {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            if (infoMessage.includes("Score") || infoMessage.includes("Puntuación")) {
+                const result = phaseResults[currentPhase] || phaseResults[currentPhase-1];
+                if(result){
+                    const score = result.score || 0;
+                    const xp = result.xpEarned || 0;
+                    infoMessage = translations[currentLang].info_score.replace('{score}', score).replace('{xp}', xp);
+                }
+            } else if (infoMessage.includes("Evaluating") || infoMessage.includes("Evaluando")) {
+                 infoMessage = translations[currentLang].info_evaluating.replace('{phase}', currentPhase);
+            } else if (infoMessage.includes("Transitioning") || infoMessage.includes("Transicionando")) {
+                infoMessage = translations[currentLang].info_transition.replace('{phase}', currentPhase).replace('{phaseName}', translations[currentLang].phases[currentPhase - 1].name);
+            } else if (infoMessage.includes("restarted") || infoMessage.includes("reiniciado")) {
+                infoMessage = translations[currentLang].info_restart;
+            } else if(infoMessage.includes("Please enter") || infoMessage.includes("Por favor")) {
+                infoMessage = translations[currentLang].info_empty_input;
+            } else {
+                infoMessage = translations[currentLang].info_start;
+            }
+            
+            if (gameContainer.innerHTML && !showSplash) {
+                renderApp();
+            } else {
+                setLanguageUI(currentLang);
+            }
+            renderCharts();
+        }
+
+        langToggleBtnDesktop.addEventListener('click', handleLanguageToggle);
+        langToggleBtnMobile.addEventListener('click', handleLanguageToggle);
+
+        function setLanguageUI(lang) {
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    let text = translations[lang][key];
+                    if (element.dataset.phase) {
+                        text = text.replace('{phase}', element.dataset.phase);
+                    }
+                    if (element.placeholder) {
+                        element.placeholder = text;
+                    } else {
+                        element.innerHTML = text;
+                    }
+                }
+            });
+            const langText = lang === 'en' ? 'ES' : 'EN';
+            if(langToggleBtnDesktop) langToggleBtnDesktop.textContent = langText;
+            if(langToggleBtnMobile) langToggleBtnMobile.textContent = langText;
+
+            if (gameContainer.innerHTML && !showSplash) {
+                const textarea = document.getElementById('phase-input-textarea');
+                if(textarea) {
+                    textarea.placeholder = translations[lang].response_placeholder.replace('{phase}', currentPhase);
+                }
+                const infoMsgEl = document.getElementById('info-message');
+                if(infoMsgEl) {
+                    infoMsgEl.innerText = infoMessage;
+                }
+            }
+        }
+
+        // --- AI TOOLKIT LOGIC ---
+        const skillsInput = document.getElementById('skills-input');
+        const generateIdeasBtn = document.getElementById('generate-ideas-btn');
+        const ideasOutput = document.getElementById('ideas-output');
+        const loadingSpinner = document.getElementById('loading-spinner');
+
+        generateIdeasBtn.addEventListener('click', async () => {
+            const userSkills = skillsInput.value.trim();
+            if (!userSkills) {
+                ideasOutput.textContent = currentLang === 'es' ? 'Por favor, describe tus habilidades.' : 'Please describe your skills.';
+                ideasOutput.classList.remove('hidden');
+                return;
+            }
+            generateIdeasBtn.disabled = true;
+            loadingSpinner.classList.remove('hidden');
+            ideasOutput.classList.add('hidden');
+            
+            try {
+                const prompt = `Generate 3 innovative digital business ideas for a digital nomad with these skills/interests: "${userSkills}". Format: 1. [Idea Name]: [Brief description].`;
+                let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                const result = await response.json();
+                const text = result.candidates[0].content.parts[0].text;
+                ideasOutput.textContent = text;
+            } catch (error) {
+                ideasOutput.textContent = 'Error fetching ideas.';
+            } finally {
+                generateIdeasBtn.disabled = false;
+                loadingSpinner.classList.add('hidden');
+                ideasOutput.classList.remove('hidden');
+            }
+        });
+
+        const contentNicheInput = document.getElementById('content-niche-input');
+        const generateContentIdeasBtn = document.getElementById('generate-content-ideas-btn');
+        const contentIdeasOutput = document.getElementById('content-ideas-output');
+        const loadingContentSpinner = document.getElementById('loading-content-spinner');
+
+        generateContentIdeasBtn.addEventListener('click', async () => {
+            const userNiche = contentNicheInput.value.trim();
+            if (!userNiche) {
+                contentIdeasOutput.textContent = currentLang === 'es' ? 'Por favor, describe tu nicho.' : 'Please describe your niche.';
+                contentIdeasOutput.classList.remove('hidden');
+                return;
+            }
+            generateContentIdeasBtn.disabled = true;
+            loadingContentSpinner.classList.remove('hidden');
+            contentIdeasOutput.classList.add('hidden');
+
+            try {
+                const prompt = `Generate 5 content ideas (blog titles, video ideas) for this niche: "${userNiche}". Format: 1. [Content Type]: [Title/Topic].`;
+                let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                const result = await response.json();
+                const text = result.candidates[0].content.parts[0].text;
+                contentIdeasOutput.textContent = text;
+            } catch (error) {
+                contentIdeasOutput.textContent = 'Error fetching content ideas.';
+            } finally {
+                generateContentIdeasBtn.disabled = false;
+                loadingContentSpinner.classList.add('hidden');
+                contentIdeasOutput.classList.remove('hidden');
+            }
+        });
+
+        // --- CHART.JS LOGIC ---
+        function renderCharts() {
+            if (window.demographicsChartInstance) window.demographicsChartInstance.destroy();
+            if (window.costComparisonChartInstance) window.costComparisonChartInstance.destroy();
+
+            const lang = currentLang;
+            const yellowColor = '#D4AF37';
+            const slateColor = '#334155';
+            const greenColor = '#16a34a';
+            const redColor = '#dc2626';
+
+            const demographicsCtx = document.getElementById('demographicsChart')?.getContext('2d');
+            if (demographicsCtx) {
+                window.demographicsChartInstance = new Chart(demographicsCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Millennials', 'Gen Z', 'Gen X', 'Boomers'],
+                        datasets: [{ data: [45, 30, 15, 10], backgroundColor: [yellowColor, slateColor, greenColor, redColor], hoverOffset: 4 }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' } } }
+                });
+            }
+
+            const costComparisonCtx = document.getElementById('costComparisonChart')?.getContext('2d');
+            if (costComparisonCtx) {
+                window.costComparisonChartInstance = new Chart(costComparisonCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: [lang === 'es' ? 'Costo Vida NY' : 'NYC Cost', lang === 'es' ? 'Costo Vida Medellín' : 'Medellin Cost', lang === 'es' ? 'Costo Vida Bali' : 'Bali Cost'],
+                        datasets: [{ label: lang === 'es' ? 'Costo Mensual (USD)' : 'Monthly Cost (USD)', data: [4500, 1200, 800], backgroundColor: [slateColor, yellowColor, greenColor] }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+                });
+            }
+        }
+
+        // --- INITIAL RENDER ---
+        if(gameContainer) {
+            renderApp();
+        } else {
+            setLanguageUI(currentLang);
+        }
+        renderCharts();
+      });
     </script>
   </body>
 </html>
