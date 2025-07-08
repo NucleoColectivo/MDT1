@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Núcleobot - Generador de Prompts Creativos</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+    /* Paleta Núcleo Colectivo */
+    :root {
+      --amarillo: #FFD93B;
+      --violeta: #6A0DAD;
+      --negro: #1C1C1C;
+      --blanco: #FFFFFF;
+      --gris: #F5F5F5;
+      --gris-oscuro: #333333;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      background: var(--gris);
+      color: var(--negro);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--violeta);
+      color: var(--blanco);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    header img.logo {
+      height: 40px;
+    }
+
+    header h1 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 900px;
+      margin: 2rem auto;
+      background: var(--blanco);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Categorías */
+    label {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+
+    select {
+      width: 100%;
+      padding: 0.6rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 2px solid var(--violeta);
+      background: var(--gris);
+      transition: border-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    select:hover, select:focus {
+      border-color: var(--amarillo);
+      outline: none;
+    }
+
+    /* Prompts List */
+    .prompts-list {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid var(--gris-oscuro);
+      border-radius: 8px;
+      padding: 0.5rem;
+      background: var(--gris);
+    }
+
+    .prompt-item {
+      padding: 0.5rem 0.6rem;
+      cursor: pointer;
+      border-bottom: 1px solid var(--gris-oscuro);
+      transition: background 0.2s ease;
+    }
+
+    .prompt-item:last-child {
+      border-bottom: none;
+    }
+
+    .prompt-item:hover {
+      background: var(--amarillo);
+      color: var(--negro);
+    }
+
+    /* Chatbot */
+    .chatbot-area {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    textarea {
+      width: 100%;
+      resize: vertical;
+      min-height: 100px;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 2px solid var(--violeta);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    button.generate-btn {
+      align-self: flex-end;
+      background: var(--amarillo);
+      border: none;
+      color: var(--negro);
+      font-weight: 700;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    }
+
+    button.generate-btn:hover {
+      background: #FFEA70;
+    }
+
+    /* Resultado */
+    .result-area {
+      background: var(--gris);
+      border-radius: 8px;
+      padding: 1rem;
+      min-height: 150px;
+      white-space: pre-wrap;
+      font-size: 1rem;
+      color: var(--negro);
+      border: 2px solid var(--violeta);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      main {
+        margin: 1rem;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img class="logo" src="https://dummyimage.com/80x40/6a0dad/fff&text=Núcleo" alt="Logo Núcleo Colectivo" />
+    <h1>Núcleobot</h1>
+  </header>
+
+  <main>
+    <div>
+      <label for="category-select">Selecciona Categoría</label>
+      <select id="category-select">
+        <option value="" disabled selected>Elige una categoría...</option>
+        <option value="arte">Arte y Diseño</option>
+        <option value="tecnologia">Tecnología y IA</option>
+        <option value="cultura">Cultura y Comunidad</option>
+        <option value="educacion">Educación y Formación</option>
+        <option value="bienestar">Bienestar y Reflexión</option>
+      </select>
+    </div>
+
+    <div class="prompts-list" id="prompts-list">
+      <p style="text-align:center; color: var(--gris-oscuro);">Selecciona una categoría para ver prompts</p>
+    </div>
+
+    <div class="chatbot-area">
+      <label for="prompt-input">Prompt seleccionado / Edítalo aquí:</label>
+      <textarea id="prompt-input" placeholder="Elige un prompt o escribe el tuyo aquí..."></textarea>
+      <button class="generate-btn" id="generate-btn">Generar texto</button>
+    </div>
+
+    <div class="result-area" id="result-area" aria-live="polite">
+      Aquí aparecerá el resultado...
+    </div>
+  </main>
+
+  <script>
+    const prompts = {
+      arte: [
+        "Crea una descripción para una ilustración que represente la transformación social usando colores cálidos.",
+        "Explica paso a paso cómo pintar un paisaje urbano en acrílico.",
+        "Sugiere una serie fotográfica sobre la vida cotidiana en Medellín enfocada en emociones humanas.",
+        "Genera ideas para el diseño del logo de un colectivo artístico que sea moderno y inclusivo."
+      ],
+      tecnologia: [
+        "Escribe un prompt para entrenar un chatbot que ayude a usuarios a crear arte con IA.",
+        "Crea un reto de programación para generar arte visual usando Processing y GPT.",
+        "Recomienda las mejores herramientas IA para generación de música experimental."
+      ],
+      cultura: [
+        "Diseña un esquema para un evento colaborativo de arte y tecnología en espacios públicos.",
+        "Genera ideas para proyectos colectivos que promuevan la inclusión social a través del arte.",
+        "Sugiere roles para un equipo multidisciplinario en un proyecto artístico colaborativo."
+      ],
+      educacion: [
+        "Crea un plan de 4 sesiones para un taller sobre IA aplicada a la creatividad artística.",
+        "Lista recursos gratuitos para aprender a programar chatbots creativos.",
+        "Explica cómo integrar ElevenLabs para generar voz en off en un proyecto audiovisual."
+      ],
+      bienestar: [
+        "Propón un ejercicio de mindfulness para estimular la creatividad diaria.",
+        "Genera preguntas para una autoexploración sobre la relación entre arte e identidad personal.",
+        "Explica el concepto de creatividad consciente y cómo aplicarlo en proyectos artísticos."
+      ]
+    };
+
+    const categorySelect = document.getElementById('category-select');
+    const promptsList = document.getElementById('prompts-list');
+    const promptInput = document.getElementById('prompt-input');
+    const generateBtn = document.getElementById('generate-btn');
+    const resultArea = document.getElementById('result-area');
+
+    // Carga los prompts según categoría seleccionada
+    categorySelect.addEventListener('change', () => {
+      const category = categorySelect.value;
+      promptInput.value = '';
+      resultArea.textContent = 'Aquí aparecerá el resultado...';
+
+      if (!category || !prompts[category]) {
+        promptsList.innerHTML = '<p style="text-align:center; color: var(--gris-oscuro);">Selecciona una categoría para ver prompts</p>';
+        return;
+      }
+
+      promptsList.innerHTML = '';
+      prompts[category].forEach(p => {
+        const pItem = document.createElement('div');
+        pItem.className = 'prompt-item';
+        pItem.textContent = p;
+        pItem.tabIndex = 0;
+        pItem.addEventListener('click', () => {
+          promptInput.value = p;
+          promptInput.focus();
+        });
+        pItem.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            promptInput.value = p;
+            promptInput.focus();
+          }
+        });
+        promptsList.appendChild(pItem);
+      });
+    });
+
+    // Simulación de generación de texto (aquí puedes integrar IA real)
+    generateBtn.addEventListener('click', () => {
+      const prompt = promptInput.value.trim();
+      if (!prompt) {
+        resultArea.textContent = 'Por favor, ingresa un prompt para generar texto.';
+        return;
+      }
+
+      // Simulación: genera texto natural + esquema simple
+      const textoNatural = `Texto generado para el prompt:\n"${prompt}"\n\nEste es un ejemplo de texto fluido que explica o desarrolla el tema con lenguaje cercano y natural, incluyendo ejemplos y recomendaciones relevantes para Núcleo Colectivo.`;
+
+      const esquema = `\n\nEsquema / Mapa Mental:\n- Tema central: ${prompt.split(' ')[0]}\n- Ramas:\n  - Idea principal\n  - Detalles\n  - Aplicaciones\n  - Reflexión`;
+
+      resultArea.textContent = textoNatural + esquema;
+    });
+  </script>
+</body>
+</html>
